@@ -1,0 +1,28 @@
+{% from "_includes/forms" import textField, lightswitchField, selectField, autosuggestField %}
+
+{{ lightswitchField({
+    label: "Enable Sandbox?"|t('commerce-stripe'),
+    name: 'sandboxEnabled',
+    on: gateway.sandboxEnabled,
+    errors: gateway.getErrors('sandboxEnabled'),
+}) }}
+
+{{ autosuggestField({
+    label: 'Shop ID'|t('commerce'),
+    id: 'shopId',
+    class: 'ltr',
+    name: 'shopId',
+    suggestEnvVars: true,
+    value: gateway.shopId,
+    errors: gateway.getErrors('shopId')
+}) }}
+
+{{ autosuggestField({
+    label: 'Auth Token'|t('commerce'),
+    id: 'authToken',
+    class: 'ltr',
+    name: 'authToken',
+    suggestEnvVars: true,
+    value: gateway.authToken,
+    errors: gateway.getErrors('authToken')
+}) }}
