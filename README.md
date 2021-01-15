@@ -28,7 +28,7 @@ cd /path/to/my-project.test
 composer require logisticdesign/commerce-soisy
 
 # tell Craft to install the plugin
-./craft install/plugin commerce-soisy
+./craft plugin/install commerce-soisy
 ```
 
 ## Setup
