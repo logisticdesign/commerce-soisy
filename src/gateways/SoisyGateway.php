@@ -125,10 +125,13 @@ class SoisyGateway extends Gateway
     {
         $endpoint = $this->isSandboxEnabled() ? self::SANDBOX_API_URL : self::API_URL;
 
+        $shopId = Craft::parseEnv($this->shopId);
+        $authToken = Craft::parseEnv($this->authToken);
+
         return new Client([
-            'base_uri' => "{$endpoint}/shops/{$this->shopId}/",
+            'base_uri' => "{$endpoint}/shops/{$shopId}/",
             'headers' => [
-                'X-Auth-Token' => $this->authToken
+                'X-Auth-Token' => $authToken
             ],
         ]);
     }
