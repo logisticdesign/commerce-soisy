@@ -335,6 +335,12 @@ class SoisyGateway extends Gateway
         return new SoisyResponse($apiResponse);
     }
 
+    /**
+     * Handle Soisy callback http request.
+     *
+     * @todo Handle partial payments on LoanWasDisbursed.
+     * @return WebResponse
+     */
     protected function handleSoisyCallback(): WebResponse
     {
         $request = Craft::$app->request;
@@ -385,6 +391,12 @@ class SoisyGateway extends Gateway
 
             case 'LoanWasDisbursed':
                 $childTransaction->status = TransactionRecord::STATUS_SUCCESS;
+
+                // Waiting a new Craft Commerce 3.x release that handle partial payments.
+                // PR: https://github.com/craftcms/commerce/pull/1903
+
+                // $paymentAmount = (int) $request->getBodyParam('amount');
+                // $childTransaction->amount = $paymentAmount / 100;
                 break;
 
             case 'UserWasRejected':
